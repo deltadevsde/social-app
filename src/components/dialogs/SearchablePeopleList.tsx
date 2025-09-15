@@ -366,9 +366,11 @@ function DefaultProfileCard({
   const {_} = useLingui()
   const enabled = canBeMessaged(profile)
   const moderation = moderateProfile(profile, moderationOpts)
-  const handle = sanitizeHandle(profile.handle, '@')
+  const {currentAccount} = useSession()
+  const handle = sanitizeHandle(profile.handle, currentAccount?.handle, '@')
   const displayName = sanitizeDisplayName(
-    profile.displayName || sanitizeHandle(profile.handle),
+    profile.displayName ||
+      sanitizeHandle(profile.handle, currentAccount?.handle),
     moderation.ui('displayName'),
   )
 

@@ -81,10 +81,10 @@ export function SettingsScreen({}: Props) {
   const switchAccountControl = useDialogControl()
   const signOutPromptControl = Prompt.usePromptControl()
   const {data: profile} = useProfileQuery({did: currentAccount?.did})
+  const others = accounts.filter(acc => acc.did !== currentAccount?.did)
+  const selectable = others.length ? others : [currentAccount]
   const {data: otherProfiles} = useProfilesQuery({
-    handles: accounts
-      .filter(acc => acc.did !== currentAccount?.did)
-      .map(acc => acc.handle),
+    handles: selectable.map(acc => acc!.handle),
   })
   const {pendingDid, onPressSwitchAccount} = useAccountSwitcher()
   const [showAccounts, setShowAccounts] = useState(false)

@@ -271,7 +271,8 @@ let ProfileHeaderStandard = ({
                   a.leading_tight,
                 ]}>
                 {sanitizeDisplayName(
-                  profile.displayName || sanitizeHandle(profile.handle),
+                  profile.displayName ||
+                    sanitizeHandle(profile.handle, currentAccount?.handle),
                   moderation.ui('displayName'),
                 )}
                 <View

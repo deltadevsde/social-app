@@ -6,6 +6,7 @@ import {useLingui} from '@lingui/react'
 import {isInvalidHandle, sanitizeHandle} from '#/lib/strings/handles'
 import {isIOS, isNative} from '#/platform/detection'
 import {type Shadow} from '#/state/cache/types'
+import {useSession} from '#/state/session'
 import {atoms as a, useTheme, web} from '#/alf'
 import {NewskieDialog} from '#/components/NewskieDialog'
 import {Text} from '#/components/Typography'
@@ -19,7 +20,10 @@ export function ProfileHeaderHandle({
 }) {
   const t = useTheme()
   const {_} = useLingui()
-  const invalidHandle = isInvalidHandle(profile.handle)
+  const {currentAccount} = useSession()
+  console.log(profile)
+  const handle = currentAccount?.handle || profile.handle
+  const invalidHandle = isInvalidHandle(handle)
   const blockHide = profile.viewer?.blocking || profile.viewer?.blockedBy
   return (
     <View
@@ -54,9 +58,10 @@ export function ProfileHeaderHandle({
           }),
         ]}>
         {invalidHandle
-          ? _(msg`⚠Invalid Handle`)
+          ? currentAccount?.handle || _(msg`⚠Invalid Handle`)
           : sanitizeHandle(
-              profile.handle,
+              handle,
+              currentAccount?.handle,
               '@',
               // forceLTR handled by CSS above on web
               isNative,

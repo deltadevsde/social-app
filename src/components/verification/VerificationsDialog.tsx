@@ -57,8 +57,9 @@ function Inner({
   const t = useTheme()
   const {_} = useLingui()
   const {gtMobile} = useBreakpoints()
+  const {currentAccount} = useSession()
 
-  const userName = getUserDisplayName(profile)
+  const userName = getUserDisplayName(profile, currentAccount?.handle)
   const label = state.profile.isViewer
     ? state.profile.isVerified
       ? _(msg`You are verified`)

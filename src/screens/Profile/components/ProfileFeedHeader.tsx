@@ -86,7 +86,7 @@ export function ProfileFeedHeaderSkeleton() {
 export function ProfileFeedHeader({info}: {info: FeedSourceFeedInfo}) {
   const t = useTheme()
   const {_, i18n} = useLingui()
-  const {hasSession} = useSession()
+  const {currentAccount, hasSession} = useSession()
   const {gtMobile} = useBreakpoints()
   const infoControl = Dialog.useDialogControl()
   const playHaptic = useHaptics()
@@ -250,7 +250,11 @@ export function ProfileFeedHeader({info}: {info: FeedSourceFeedInfo}) {
                             t.atoms.text_contrast_medium,
                           ]}
                           numberOfLines={1}>
-                          {sanitizeHandle(info.creatorHandle, '@')}
+                          {sanitizeHandle(
+                            info.creatorHandle,
+                            currentAccount?.handle,
+                            '@',
+                          )}
                         </Text>
                         <View style={[a.flex_row, a.align_center, {gap: 2}]}>
                           <HeartFilled

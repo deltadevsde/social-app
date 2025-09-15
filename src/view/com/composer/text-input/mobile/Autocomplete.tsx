@@ -7,6 +7,7 @@ import {PressableScale} from '#/lib/custom-animations/PressableScale'
 import {sanitizeDisplayName} from '#/lib/strings/display-names'
 import {sanitizeHandle} from '#/lib/strings/handles'
 import {useActorAutocompleteQuery} from '#/state/queries/actor-autocomplete'
+import {useSession} from '#/state/session'
 import {UserAvatar} from '#/view/com/util/UserAvatar'
 import {atoms as a, platform, useTheme} from '#/alf'
 import {Text} from '#/components/Typography'
@@ -78,8 +79,10 @@ function AutocompleteProfileCard({
 }) {
   const t = useTheme()
   const state = useSimpleVerificationState({profile})
+  const {currentAccount} = useSession()
   const displayName = sanitizeDisplayName(
-    profile.displayName || sanitizeHandle(profile.handle),
+    profile.displayName ||
+      sanitizeHandle(profile.handle, currentAccount?.handle),
   )
   return (
     <View
@@ -133,7 +136,7 @@ function AutocompleteProfileCard({
         <Text
           style={[t.atoms.text_contrast_medium, a.text_right, a.leading_snug]}
           numberOfLines={1}>
-          {sanitizeHandle(profile.handle, '@')}
+          {sanitizeHandle(profile.handle, currentAccount?.handle, '@')}
         </Text>
       </PressableScale>
     </View>

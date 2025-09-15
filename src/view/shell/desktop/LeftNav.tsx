@@ -174,7 +174,11 @@ function ProfileCard() {
                             t.atoms.text_contrast_medium,
                           ]}
                           numberOfLines={1}>
-                          {sanitizeHandle(profile.handle, '@')}
+                          {sanitizeHandle(
+                            profile.handle,
+                            currentAccount?.handle,
+                            '@',
+                          )}
                         </Text>
                       </View>
                       <EllipsisIcon
@@ -336,6 +340,7 @@ function SwitchMenuItem({
   const {_} = useLingui()
   const {onPressSwitchAccount, pendingDid} = useAccountSwitcher()
   const {isActive: live} = useActorStatus(profile)
+  const {currentAccount} = useSession()
 
   return (
     <Menu.Item
@@ -345,6 +350,7 @@ function SwitchMenuItem({
       label={_(
         msg`Switch to ${sanitizeHandle(
           profile?.handle ?? account.handle,
+          currentAccount?.handle,
           '@',
         )}`,
       )}
@@ -359,7 +365,11 @@ function SwitchMenuItem({
         />
       </View>
       <Menu.ItemText>
-        {sanitizeHandle(profile?.handle ?? account.handle, '@')}
+        {sanitizeHandle(
+          profile?.handle ?? account.handle,
+          currentAccount?.handle,
+          '@',
+        )}
       </Menu.ItemText>
     </Menu.Item>
   )

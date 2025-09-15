@@ -98,7 +98,9 @@ export function useProfilesQuery({
     staleTime: STALE.MINUTES.FIVE,
     queryKey: profilesQueryKey(handles),
     queryFn: async () => {
+      console.log('HANDLES', handles)
       const res = await agent.getProfiles({actors: handles})
+      console.log('PROFILES', res.data)
       return res.data
     },
     placeholderData: maintainData ? keepPreviousData : undefined,

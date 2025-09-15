@@ -141,7 +141,7 @@ export function WizardProfileCard({
   const moderationUi = moderateProfile(profile, moderationOpts).ui('avatar')
   const displayName = profile.displayName
     ? sanitizeDisplayName(profile.displayName)
-    : `@${sanitizeHandle(profile.handle)}`
+    : `@${sanitizeHandle(profile.handle, currentAccount?.handle)}`
 
   const onPress = () => {
     if (disabled) return
@@ -161,7 +161,7 @@ export function WizardProfileCard({
       type="user"
       btnType={btnType}
       displayName={displayName}
-      subtitle={`@${sanitizeHandle(profile.handle)}`}
+      subtitle={`@${sanitizeHandle(profile.handle, currentAccount?.handle)}`}
       onPress={onPress}
       avatar={profile.avatar}
       included={included}
@@ -190,6 +190,7 @@ export function WizardFeedCard({
   const moderationUi = moderateFeedGenerator(generator, moderationOpts).ui(
     'avatar',
   )
+  const {currentAccount} = useSession()
 
   const onPress = () => {
     if (disabled) return
@@ -207,7 +208,7 @@ export function WizardFeedCard({
       type="algo"
       btnType={btnType}
       displayName={sanitizeDisplayName(generator.displayName)}
-      subtitle={`Feed by @${sanitizeHandle(generator.creator.handle)}`}
+      subtitle={`Feed by @${sanitizeHandle(generator.creator.handle, currentAccount?.handle)}`}
       onPress={onPress}
       avatar={generator.avatar}
       included={included}

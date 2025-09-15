@@ -6,6 +6,7 @@ import {sanitizeDisplayName} from '#/lib/strings/display-names'
 import {sanitizeHandle} from '#/lib/strings/handles'
 import {STALE} from '#/state/queries'
 import {useProfileQuery} from '#/state/queries/profile'
+import {useSession} from '#/state/session'
 import {atoms as a} from '#/alf'
 import {InlineLinkText} from '#/components/Link'
 import {Text} from '#/components/Typography'
@@ -32,6 +33,7 @@ export function UserInfoText({
     did,
     staleTime: STALE.INFINITY,
   })
+  const {currentAccount} = useSession()
 
   if (isError) {
     return (
@@ -43,7 +45,7 @@ export function UserInfoText({
     const text = `${prefix || ''}${sanitizeDisplayName(
       typeof profile[attr] === 'string' && profile[attr]
         ? (profile[attr] as string)
-        : sanitizeHandle(profile.handle),
+        : sanitizeHandle(profile.handle, currentAccount?.handle),
     )}`
     return (
       <InlineLinkText

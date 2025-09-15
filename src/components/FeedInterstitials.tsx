@@ -167,6 +167,7 @@ function useExperimentalSuggestedUsersQuery() {
       did => did !== currentAccount?.did,
     )
   }, [userActionSnapshot, currentAccount])
+  console.log('DIDS', dids)
   const {data, isLoading, error} = useProfilesQuery({
     handles: dids.slice(0, 16),
   })

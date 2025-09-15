@@ -197,7 +197,11 @@ function WizardInner({
   )
 
   const getDefaultName = () => {
-    const displayName = createSanitizedDisplayName(currentProfile!, true)
+    const displayName = createSanitizedDisplayName(
+      currentProfile!,
+      currentAccount?.handle,
+      true,
+    )
     return _(msg`${displayName}'s Starter Pack`).slice(0, 50)
   }
 

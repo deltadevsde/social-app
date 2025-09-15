@@ -12,7 +12,6 @@ import {useMutation} from '@tanstack/react-query'
 
 import {until} from '#/lib/async/until'
 import {sanitizeDisplayName} from '#/lib/strings/display-names'
-import {sanitizeHandle} from '#/lib/strings/handles'
 import {enforceLen} from '#/lib/strings/helpers'
 import {useAgent} from '#/state/session'
 import type * as bsky from '#/types/bsky'
@@ -97,7 +96,7 @@ export function useGenerateStarterPackMutation({
       const displayName = enforceLen(
         profile.displayName
           ? sanitizeDisplayName(profile.displayName)
-          : `@${sanitizeHandle(profile.handle)}`,
+          : `@${profile.handle}`,
         25,
         true,
       )

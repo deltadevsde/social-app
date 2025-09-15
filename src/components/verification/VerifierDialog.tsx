@@ -54,7 +54,7 @@ function Inner({
   const {currentAccount} = useSession()
 
   const isSelf = profile.did === currentAccount?.did
-  const userName = getUserDisplayName(profile)
+  const userName = getUserDisplayName(profile, currentAccount?.handle)
   const label = isSelf
     ? _(msg`You are a trusted verifier`)
     : _(msg`${userName} is a trusted verifier`)

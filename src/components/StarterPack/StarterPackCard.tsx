@@ -87,7 +87,9 @@ export function Card({
             numberOfLines={1}>
             {creator?.did === currentAccount?.did
               ? _(msg`Starter pack by you`)
-              : _(msg`Starter pack by ${sanitizeHandle(creator.handle, '@')}`)}
+              : _(
+                  msg`Starter pack by ${sanitizeHandle(creator.handle, currentAccount?.handle, '@')}`,
+                )}
           </Text>
         </View>
       </View>

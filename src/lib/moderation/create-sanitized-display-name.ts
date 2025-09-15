@@ -4,11 +4,12 @@ import type * as bsky from '#/types/bsky'
 
 export function createSanitizedDisplayName(
   profile: bsky.profile.AnyProfileView,
+  fallbackHandle: string | undefined,
   noAt = false,
 ) {
   if (profile.displayName != null && profile.displayName !== '') {
     return sanitizeDisplayName(profile.displayName)
   } else {
-    return sanitizeHandle(profile.handle, noAt ? '' : '@')
+    return sanitizeHandle(profile.handle, fallbackHandle, noAt ? '' : '@')
   }
 }

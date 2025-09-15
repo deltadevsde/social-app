@@ -84,6 +84,7 @@ export function AvatarStackWithFetch({
   size?: number
   backgroundColor?: string
 }) {
+  console.log('PROFILES', profiles)
   const {data, error} = useProfilesQuery({handles: profiles})
 
   if (error) {

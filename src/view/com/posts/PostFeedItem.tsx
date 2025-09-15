@@ -380,7 +380,7 @@ let FeedItemInner = ({
                             lineHeight={1.2}>
                             {sanitizeDisplayName(
                               reason.by.displayName ||
-                                sanitizeHandle(reason.by.handle),
+                                sanitizeHandle(reason.by.handle, undefined),
                               moderation.ui('displayName'),
                             )}
                           </Text>

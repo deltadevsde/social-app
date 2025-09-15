@@ -35,6 +35,7 @@ import {
   createComposerImage,
 } from '#/state/gallery'
 import {unstableCacheProfileView} from '#/state/queries/unstable-profile-cache'
+import {useSession} from '#/state/session'
 import {EditImageDialog} from '#/view/com/composer/photos/EditImageDialog'
 import {HighPriorityImage} from '#/view/com/util/images/Image'
 import {atoms as a, tokens, useTheme} from '#/alf'
@@ -535,6 +536,7 @@ let PreviewableUserAvatar = ({
   const status = useActorStatus(profile)
   const liveControl = useDialogControl()
   const playHaptic = useHaptics()
+  const {currentAccount} = useSession()
 
   const onPress = useCallback(() => {
     onBeforePress?.()
@@ -570,7 +572,8 @@ let PreviewableUserAvatar = ({
           <Button
             label={_(
               msg`${sanitizeDisplayName(
-                profile.displayName || sanitizeHandle(profile.handle),
+                profile.displayName ||
+                  sanitizeHandle(profile.handle, currentAccount?.handle),
               )}'s avatar`,
             )}
             accessibilityHint={_(msg`Opens live status dialog`)}
@@ -588,7 +591,8 @@ let PreviewableUserAvatar = ({
         <Link
           label={_(
             msg`${sanitizeDisplayName(
-              profile.displayName || sanitizeHandle(profile.handle),
+              profile.displayName ||
+                sanitizeHandle(profile.handle, currentAccount?.handle),
             )}'s avatar`,
           )}
           accessibilityHint={_(msg`Opens this profile`)}

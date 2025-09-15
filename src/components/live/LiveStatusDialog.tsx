@@ -14,6 +14,7 @@ import {toNiceDomain} from '#/lib/strings/url-helpers'
 import {logger} from '#/logger'
 import {useModerationOpts} from '#/state/preferences/moderation-opts'
 import {unstableCacheProfileView} from '#/state/queries/profile'
+import {useSession} from '#/state/session'
 import {android, atoms as a, platform, tokens, useTheme, web} from '#/alf'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import * as Dialog from '#/components/Dialog'
@@ -54,6 +55,7 @@ function DialogInner({
 }) {
   const {_} = useLingui()
   const control = Dialog.useDialogContext()
+  const {currentAccount} = useSession()
 
   const onPressOpenProfile = useCallback(() => {
     control.close(() => {
@@ -65,7 +67,9 @@ function DialogInner({
 
   return (
     <Dialog.ScrollableInner
-      label={_(msg`${sanitizeHandle(profile.handle)} is live`)}
+      label={_(
+        msg`${sanitizeHandle(profile.handle, currentAccount?.handle)} is live`,
+      )}
       contentContainerStyle={[a.pt_0, a.px_0]}
       style={[web({maxWidth: 420}), a.overflow_hidden]}>
       <LiveStatus

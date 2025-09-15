@@ -1,9 +1,10 @@
 import {View} from 'react-native'
-import {AppBskyActorDefs, ModerationDecision} from '@atproto/api'
+import {type AppBskyActorDefs, type ModerationDecision} from '@atproto/api'
 
 import {sanitizeDisplayName} from '#/lib/strings/display-names'
 import {sanitizeHandle} from '#/lib/strings/handles'
-import {Shadow} from '#/state/cache/types'
+import {type Shadow} from '#/state/cache/types'
+import {useSession} from '#/state/session'
 import {atoms as a, useBreakpoints, useTheme} from '#/alf'
 import {Text} from '#/components/Typography'
 
@@ -15,6 +16,7 @@ export function ProfileHeaderDisplayName({
   moderation: ModerationDecision
 }) {
   const t = useTheme()
+  const {currentAccount} = useSession()
   const {gtMobile} = useBreakpoints()
 
   return (
@@ -29,7 +31,8 @@ export function ProfileHeaderDisplayName({
           a.font_heavy,
         ]}>
         {sanitizeDisplayName(
-          profile.displayName || sanitizeHandle(profile.handle),
+          profile.displayName ||
+            sanitizeHandle(profile.handle, currentAccount?.handle),
           moderation.ui('displayName'),
         )}
       </Text>

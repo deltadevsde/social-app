@@ -70,6 +70,7 @@ let DrawerProfileCard = ({
   const {data: profile} = useProfileQuery({did: account.did})
   const verification = useSimpleVerificationState({profile})
   const {isActive: live} = useActorStatus(profile)
+  const {currentAccount} = useSession()
 
   return (
     <TouchableOpacity
@@ -110,7 +111,7 @@ let DrawerProfileCard = ({
           emoji
           style={[t.atoms.text_contrast_medium, a.text_md, a.leading_tight]}
           numberOfLines={1}>
-          {sanitizeHandle(account.handle, '@')}
+          {sanitizeHandle(account.handle, currentAccount?.handle, '@')}
         </Text>
       </View>
       <Text style={[a.text_md, t.atoms.text_contrast_medium]}>

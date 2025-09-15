@@ -11,6 +11,7 @@ import {sanitizeHandle} from '#/lib/strings/handles'
 import {Logger} from '#/logger'
 import {isNative} from '#/platform/detection'
 import {useMyLabelersQuery} from '#/state/queries/preferences'
+import {useSession} from '#/state/session'
 import {CharProgress} from '#/view/com/composer/char-progress/CharProgress'
 import {UserAvatar} from '#/view/com/util/UserAvatar'
 import {atoms as a, useGutters, useTheme} from '#/alf'
@@ -636,6 +637,7 @@ function LabelerCard({
 }) {
   const t = useTheme()
   const {_} = useLingui()
+  const {currentAccount} = useSession()
   const onPress = React.useCallback(() => {
     onSelect?.(labeler)
   }, [onSelect, labeler])
@@ -680,7 +682,14 @@ function LabelerCard({
                 a.leading_snug,
                 t.atoms.text_contrast_medium,
               ]}>
-              <Trans>By {sanitizeHandle(labeler.creator.handle, '@')}</Trans>
+              <Trans>
+                By{' '}
+                {sanitizeHandle(
+                  labeler.creator.handle,
+                  currentAccount?.handle,
+                  '@',
+                )}
+              </Trans>
             </Text>
           </View>
         </View>

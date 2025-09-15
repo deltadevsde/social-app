@@ -21,7 +21,7 @@ import {logger} from '#/logger'
 import {isWeb} from '#/platform/detection'
 import {updateProfileShadow} from '#/state/cache/profile-shadow'
 import {RQKEY_getActivitySubscriptions} from '#/state/queries/activity-subscriptions'
-import {useAgent} from '#/state/session'
+import {useAgent, useSession} from '#/state/session'
 import * as Toast from '#/view/com/util/Toast'
 import {platform, useTheme, web} from '#/alf'
 import {atoms as a} from '#/alf'
@@ -75,6 +75,7 @@ function DialogInner({
   const t = useTheme()
   const agent = useAgent()
   const control = Dialog.useDialogContext()
+  const {currentAccount} = useSession()
   const queryClient = useQueryClient()
   const initialState = parseActivitySubscription(
     profile.viewer?.activitySubscription,
@@ -136,7 +137,7 @@ function DialogInner({
           logger.metric('activitySubscription:disable', {})
           Toast.show(
             _(
-              msg`You will no longer receive notifications for ${sanitizeHandle(profile.handle, '@')}`,
+              msg`You will no longer receive notifications for ${sanitizeHandle(profile.handle, currentAccount?.handle, '@')}`,
             ),
             'check',
           )
@@ -166,7 +167,7 @@ function DialogInner({
           if (!initialState.post && !initialState.reply) {
             Toast.show(
               _(
-                msg`You'll start receiving notifications for ${sanitizeHandle(profile.handle, '@')}!`,
+                msg`You'll start receiving notifications for ${sanitizeHandle(profile.handle, currentAccount?.handle, '@')}!`,
               ),
               'check',
             )
@@ -211,7 +212,11 @@ function DialogInner({
     }
   }, [state, initialState, control, _, isSaving, saveChanges])
 
-  const name = createSanitizedDisplayName(profile, false)
+  const name = createSanitizedDisplayName(
+    profile,
+    currentAccount?.handle,
+    false,
+  )
 
   return (
     <Dialog.ScrollableInner

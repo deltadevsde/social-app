@@ -103,6 +103,7 @@ export function useLabelerSubscriptionMutation() {
       const labelerDids = (
         preferences.data?.moderationPrefs?.labelers ?? []
       ).map(l => l.did)
+      console.log('LABELERS', labelerDids)
       const invalidLabelers: string[] = []
       if (labelerDids.length) {
         const profiles = await agent.getProfiles({actors: labelerDids})

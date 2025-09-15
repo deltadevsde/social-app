@@ -118,11 +118,13 @@ export function Link({
   profile: bsky.profile.AnyProfileView
 } & Omit<LinkProps, 'to' | 'label'>) {
   const {_} = useLingui()
+  const {currentAccount} = useSession()
   return (
     <InternalLink
       label={_(
         msg`View ${
-          profile.displayName || sanitizeHandle(profile.handle)
+          profile.displayName ||
+          sanitizeHandle(profile.handle, currentAccount?.handle)
         }'s profile`,
       )}
       to={{
@@ -221,13 +223,15 @@ function InlineNameAndHandle({
   moderationOpts: ModerationOpts
 }) {
   const t = useTheme()
+  const {currentAccount} = useSession()
   const verification = useSimpleVerificationState({profile})
   const moderation = moderateProfile(profile, moderationOpts)
   const name = sanitizeDisplayName(
-    profile.displayName || sanitizeHandle(profile.handle),
+    profile.displayName ||
+      sanitizeHandle(profile.handle, currentAccount?.handle),
     moderation.ui('displayName'),
   )
-  const handle = sanitizeHandle(profile.handle, '@')
+  const handle = sanitizeHandle(profile.handle, currentAccount?.handle, '@')
   return (
     <View style={[a.flex_row, a.align_end, a.flex_shrink]}>
       <Text
@@ -276,8 +280,10 @@ export function Name({
   moderationOpts: ModerationOpts
 }) {
   const moderation = moderateProfile(profile, moderationOpts)
+  const {currentAccount} = useSession()
   const name = sanitizeDisplayName(
-    profile.displayName || sanitizeHandle(profile.handle),
+    profile.displayName ||
+      sanitizeHandle(profile.handle, currentAccount?.handle),
     moderation.ui('displayName'),
   )
   const verification = useSimpleVerificationState({profile})
@@ -309,7 +315,8 @@ export function Name({
 
 export function Handle({profile}: {profile: bsky.profile.AnyProfileView}) {
   const t = useTheme()
-  const handle = sanitizeHandle(profile.handle, '@')
+  const {currentAccount} = useSession()
+  const handle = sanitizeHandle(profile.handle, currentAccount?.handle, '@')
 
   return (
     <Text

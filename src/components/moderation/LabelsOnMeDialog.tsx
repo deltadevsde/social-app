@@ -1,6 +1,6 @@
 import React from 'react'
 import {View} from 'react-native'
-import {ComAtprotoLabelDefs, ComAtprotoModerationDefs} from '@atproto/api'
+import {type ComAtprotoLabelDefs, ComAtprotoModerationDefs} from '@atproto/api'
 import {msg, Trans} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
 import {useMutation} from '@tanstack/react-query'
@@ -119,9 +119,10 @@ function Label({
 }) {
   const t = useTheme()
   const {_} = useLingui()
+  const {currentAccount} = useSession()
   const {labeler, strings} = useLabelInfo(label)
   const sourceName = labeler
-    ? sanitizeHandle(labeler.creator.handle, '@')
+    ? sanitizeHandle(labeler.creator.handle, currentAccount?.handle, '@')
     : label.src
   const timeDiff = useGetTimeAgo({future: true})
   return (
@@ -219,12 +220,13 @@ function AppealForm({
   const {_} = useLingui()
   const {labeler, strings} = useLabelInfo(label)
   const {gtMobile} = useBreakpoints()
+  const {currentAccount} = useSession()
   const [details, setDetails] = React.useState('')
   const {subject} = useLabelSubject({label})
   const isAccountReport = 'did' in subject
   const agent = useAgent()
   const sourceName = labeler
-    ? sanitizeHandle(labeler.creator.handle, '@')
+    ? sanitizeHandle(labeler.creator.handle, currentAccount?.handle, '@')
     : label.src
 
   const {mutate, isPending} = useMutation({
@@ -288,7 +290,13 @@ function AppealForm({
           label={_(msg`Text input field`)}
           placeholder={_(
             msg`Please explain why you think this label was incorrectly applied by ${
-              labeler ? sanitizeHandle(labeler.creator.handle, '@') : label.src
+              labeler
+                ? sanitizeHandle(
+                    labeler.creator.handle,
+                    currentAccount?.handle,
+                    '@',
+                  )
+                : label.src
             }`,
           )}
           value={details}

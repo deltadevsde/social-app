@@ -5,6 +5,7 @@ import {useLingui} from '@lingui/react'
 
 import {useRequireEmailVerification} from '#/lib/hooks/useRequireEmailVerification'
 import {createSanitizedDisplayName} from '#/lib/moderation/create-sanitized-display-name'
+import {useSession} from '#/state/session'
 import {Button, ButtonIcon} from '#/components/Button'
 import {useDialogControl} from '#/components/Dialog'
 import {BellPlus_Stroke2_Corner0_Rounded as BellPlusIcon} from '#/components/icons/BellPlus'
@@ -27,6 +28,7 @@ export function SubscribeProfileButton({
   const subscribeDialogControl = useDialogControl()
   const [activitySubscriptionsNudged, setActivitySubscriptionsNudged] =
     useActivitySubscriptionsNudged()
+  const {currentAccount} = useSession()
 
   const onDismissTooltip = () => {
     setActivitySubscriptionsNudged(true)
@@ -36,7 +38,7 @@ export function SubscribeProfileButton({
     subscribeDialogControl.open()
   }, [subscribeDialogControl])
 
-  const name = createSanitizedDisplayName(profile, true)
+  const name = createSanitizedDisplayName(profile, currentAccount?.handle, true)
 
   const wrappedOnPress = requireEmailVerification(onPress, {
     instructions: [

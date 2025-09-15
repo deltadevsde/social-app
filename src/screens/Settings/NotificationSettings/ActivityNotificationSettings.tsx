@@ -15,6 +15,7 @@ import {useProfileShadow} from '#/state/cache/profile-shadow'
 import {useModerationOpts} from '#/state/preferences/moderation-opts'
 import {useActivitySubscriptionsQuery} from '#/state/queries/activity-subscriptions'
 import {useNotificationSettingsQuery} from '#/state/queries/notifications/settings'
+import {useSession} from '#/state/session'
 import {List} from '#/view/com/util/List'
 import {atoms as a, useTheme} from '#/alf'
 import {SubscribeProfileDialog} from '#/components/activity-notifications/SubscribeProfileDialog'
@@ -204,6 +205,7 @@ function ActivitySubscriptionCard({
   const control = useDialogControl()
   const {_} = useLingui()
   const t = useTheme()
+  const {currentAccount} = useSession()
 
   const preview = useMemo(() => {
     const actSub = profile.viewer?.activitySubscription
@@ -239,6 +241,7 @@ function ActivitySubscriptionCard({
             label={_(
               msg`Edit notifications from ${createSanitizedDisplayName(
                 profile,
+                currentAccount?.handle,
               )}`,
             )}
             size="small"

@@ -1,16 +1,17 @@
-import React from 'react'
 import {View} from 'react-native'
-import {AppBskyLabelerDefs} from '@atproto/api'
+import {type AppBskyLabelerDefs} from '@atproto/api'
 import {msg, Plural, Trans} from '@lingui/macro'
 import {useLingui} from '@lingui/react'
+import type React from 'react'
 
 import {getLabelingServiceTitle} from '#/lib/moderation'
 import {sanitizeHandle} from '#/lib/strings/handles'
 import {useLabelerInfoQuery} from '#/state/queries/labeler'
+import {useSession} from '#/state/session'
 import {UserAvatar} from '#/view/com/util/UserAvatar'
-import {atoms as a, useTheme, ViewStyleProp} from '#/alf'
+import {atoms as a, useTheme, type ViewStyleProp} from '#/alf'
 import {Flag_Stroke2_Corner0_Rounded as Flag} from '#/components/icons/Flag'
-import {Link as InternalLink, LinkProps} from '#/components/Link'
+import {Link as InternalLink, type LinkProps} from '#/components/Link'
 import {RichText} from '#/components/RichText'
 import {Text} from '#/components/Typography'
 import {ChevronRight_Stroke2_Corner0_Rounded as ChevronRight} from '../icons/Chevron'
@@ -53,13 +54,14 @@ export function Title({value}: {value: string}) {
 
 export function Description({value, handle}: {value?: string; handle: string}) {
   const {_} = useLingui()
+  const {currentAccount} = useSession()
   return value ? (
     <Text numberOfLines={2}>
       <RichText value={value} style={[a.leading_snug]} />
     </Text>
   ) : (
     <Text emoji style={[a.leading_snug]}>
-      {_(msg`By ${sanitizeHandle(handle, '@')}`)}
+      {_(msg`By ${sanitizeHandle(handle, currentAccount?.handle, '@')}`)}
     </Text>
   )
 }

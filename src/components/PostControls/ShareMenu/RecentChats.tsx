@@ -103,12 +103,14 @@ function RecentChatItem({
 }) {
   const {_} = useLingui()
   const t = useTheme()
+  const {currentAccount} = useSession()
 
   const profile = useProfileShadow(profileUnshadowed)
 
   const moderation = moderateProfile(profile, moderationOpts)
   const name = sanitizeDisplayName(
-    profile.displayName || sanitizeHandle(profile.handle),
+    profile.displayName ||
+      sanitizeHandle(profile.handle, currentAccount?.handle),
     moderation.ui('displayName'),
   )
   const verification = useSimpleVerificationState({profile})

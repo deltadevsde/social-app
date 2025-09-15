@@ -32,6 +32,7 @@ export function AccountList({
   const {currentAccount, accounts} = useSession()
   const t = useTheme()
   const {_} = useLingui()
+  console.log('ACCOUNTS', accounts)
   const {data: profiles} = useProfilesQuery({
     handles: accounts.map(acc => acc.did),
   })
@@ -110,6 +111,7 @@ function AccountItem({
 }) {
   const t = useTheme()
   const {_} = useLingui()
+  const {currentAccount} = useSession()
   const verification = useSimpleVerificationState({profile})
   const {isActive: live} = useActorStatus(profile)
 
@@ -167,7 +169,7 @@ function AccountItem({
               )}
             </View>
             <Text style={[a.leading_tight, t.atoms.text_contrast_medium]}>
-              {sanitizeHandle(account.handle, '@')}
+              {sanitizeHandle(account.handle, currentAccount?.handle, '@')}
             </Text>
           </View>
 

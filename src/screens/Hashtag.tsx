@@ -49,7 +49,7 @@ export default function HashtagScreen({
 
   const sanitizedAuthor = React.useMemo(() => {
     if (!author) return
-    return sanitizeHandle(author)
+    return sanitizeHandle(author, undefined)
   }, [author])
 
   const onShare = React.useCallback(() => {

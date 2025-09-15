@@ -123,6 +123,7 @@ export function TitleAndByline({
   creator?: bsky.profile.AnyProfileView
 }) {
   const t = useTheme()
+  const {currentAccount} = useSession()
 
   return (
     <View style={[a.flex_1]}>
@@ -136,7 +137,10 @@ export function TitleAndByline({
         <Text
           style={[a.leading_snug, t.atoms.text_contrast_medium]}
           numberOfLines={1}>
-          <Trans>Feed by {sanitizeHandle(creator.handle, '@')}</Trans>
+          <Trans>
+            Feed by{' '}
+            {sanitizeHandle(creator.handle, currentAccount?.handle, '@')}
+          </Trans>
         </Text>
       )}
     </View>

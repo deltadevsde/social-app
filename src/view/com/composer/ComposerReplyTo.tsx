@@ -106,7 +106,7 @@ export function ComposerReplyTo({replyTo}: {replyTo: ComposerOptsPostRef}) {
             emoji>
             {sanitizeDisplayName(
               replyTo.author.displayName ||
-                sanitizeHandle(replyTo.author.handle),
+                sanitizeHandle(replyTo.author.handle, undefined),
             )}
           </Text>
           {verification.showBadge && (

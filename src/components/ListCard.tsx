@@ -148,8 +148,12 @@ export function TitleAndByline({
           style={[a.leading_snug, t.atoms.text_contrast_medium]}
           numberOfLines={1}>
           {purpose === MODLIST
-            ? _(msg`Moderation list by ${sanitizeHandle(creator.handle, '@')}`)
-            : _(msg`List by ${sanitizeHandle(creator.handle, '@')}`)}
+            ? _(
+                msg`Moderation list by ${sanitizeHandle(creator.handle, currentAccount?.handle, '@')}`,
+              )
+            : _(
+                msg`List by ${sanitizeHandle(creator.handle, currentAccount?.handle, '@')}`,
+              )}
         </Text>
       )}
     </View>

@@ -89,7 +89,6 @@ export function SearchScreenShell({
     currentAccount?.did ?? 'pwi',
     'searchAccountHistory',
   ])
-
   const {data: accountHistoryProfiles} = useProfilesQuery({
     handles: accountHistory,
     maintainData: true,
