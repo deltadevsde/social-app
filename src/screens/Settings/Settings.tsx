@@ -307,13 +307,15 @@ function ProfilePreview({
   const verificationState = useFullVerificationState({
     profile: shadow,
   })
+  const {currentAccount} = useSession()
   const {isActive: live} = useActorStatus(profile)
 
   if (!moderationOpts) return null
 
   const moderation = moderateProfile(profile, moderationOpts)
   const displayName = sanitizeDisplayName(
-    profile.displayName || sanitizeHandle(profile.handle),
+    profile.displayName ||
+      sanitizeHandle(profile.handle, currentAccount?.handle),
     moderation.ui('displayName'),
   )
 
@@ -359,7 +361,7 @@ function ProfilePreview({
         )}
       </View>
       <Text style={[a.text_md, a.leading_snug, t.atoms.text_contrast_medium]}>
-        {sanitizeHandle(profile.handle, '@')}
+        {sanitizeHandle(profile.handle, currentAccount?.handle, '@')}
       </Text>
     </>
   )

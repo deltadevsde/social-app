@@ -16,6 +16,7 @@ import {niceDate} from '#/lib/strings/time'
 import {isAndroid} from '#/platform/detection'
 import {useProfileShadow} from '#/state/cache/profile-shadow'
 import {precacheProfile} from '#/state/queries/profile'
+import {useSession} from '#/state/session'
 import {atoms as a, platform, useTheme, web} from '#/alf'
 import {WebOnlyInlineLinkText} from '#/components/Link'
 import {ProfileHoverCard} from '#/components/ProfileHoverCard'
@@ -53,6 +54,7 @@ let PostMeta = (opts: PostMetaOpts): React.ReactNode => {
   const onBeforePressPost = useCallback(() => {
     precacheProfile(queryClient, author)
   }, [queryClient, author])
+  const {currentAccount} = useSession()
 
   const timestampLabel = niceDate(i18n, opts.timestamp)
   const verification = useSimpleVerificationState({profile: author})
@@ -135,7 +137,8 @@ let PostMeta = (opts: PostMetaOpts): React.ReactNode => {
                 a.leading_tight,
                 {flexShrink: 10},
               ]}>
-              {NON_BREAKING_SPACE + sanitizeHandle(handle, '@')}
+              {NON_BREAKING_SPACE +
+                sanitizeHandle(handle, currentAccount?.handle, '@')}
             </WebOnlyInlineLinkText>
           </View>
         </ProfileHoverCard>

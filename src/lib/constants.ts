@@ -13,14 +13,14 @@ export const EMBED_SCRIPT = `${EMBED_SERVICE}/static/embed.js`
 export const BSKY_DOWNLOAD_URL = 'https://bsky.app/download'
 export const STARTER_PACK_MAX_SIZE = 150
 
-export const LOCAL_DEV_SERVICE = 'https://pds.prismsky.prism'
-export const PUBLIC_BSKY_SERVICE = 'https://public-api.prismsky.prism'
-export const BSKY_SERVICE = 'https://pds.prismsky.prism'
-export const DEFAULT_SERVICE = 'https://pds.prismsky.prism'
+export const LOCAL_DEV_SERVICE = 'https://pds.prism.rs'
+export const PUBLIC_BSKY_SERVICE = 'https://public-api.prism.rs'
+export const BSKY_SERVICE = 'https://pds.prism.rs'
+export const DEFAULT_SERVICE = 'https://pds.prism.rs'
 
 // And update this line:
-export const PUBLIC_APPVIEW = 'https://public-api.prismsky.prism'
-export const PUBLIC_APPVIEW_DID = 'did:web:appview.prismsky.prism'
+export const PUBLIC_APPVIEW = 'https://public-api.prism.rs'
+export const PUBLIC_APPVIEW_DID = 'did:web:appview.prism.rs'
 
 // HACK
 // Yes, this is exactly what it looks like. It's a hard-coded constant

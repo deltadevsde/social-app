@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {View} from 'react-native'
 import Animated, {
   FadeIn,
@@ -30,6 +30,54 @@ import {Text} from '#/components/Typography'
 import {BackNextButtons} from '../BackNextButtons'
 import {HandleSuggestions} from './HandleSuggestions'
 
+function useProgressiveLoadingMessage(isLoading: boolean) {
+  const {_} = useLingui()
+  const [currentMessage, setCurrentMessage] = useState('')
+
+  useEffect(() => {
+    if (!isLoading) {
+      setCurrentMessage('')
+      return
+    }
+
+    const messages = [
+      {
+        text: _(msg`Creating and posting transaction to Prism...`),
+        duration: 3000,
+      },
+      {text: _(msg`Creating DID and generating ZK proof...`), duration: 4000},
+      {
+        text: _(msg`Fetching latest epoch with proof data and DID...`),
+        duration: 3000,
+      },
+    ]
+
+    let timeoutId: NodeJS.Timeout
+    let currentIndex = 0
+
+    const showNextMessage = () => {
+      if (currentIndex < messages.length) {
+        setCurrentMessage(messages[currentIndex].text)
+
+        timeoutId = setTimeout(() => {
+          currentIndex++
+          showNextMessage()
+        }, messages[currentIndex].duration)
+      }
+    }
+
+    showNextMessage()
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId)
+      }
+    }
+  }, [isLoading, _])
+
+  return currentMessage
+}
+
 export function StepHandle() {
   const {_} = useLingui()
   const t = useTheme()
@@ -38,6 +86,7 @@ export function StepHandle() {
   const isNextLoading = useThrottledValue(state.isLoading, 500)
 
   const validCheck = validateServiceHandle(draftValue, state.userDomain)
+  const loadingMessage = useProgressiveLoadingMessage(state.isLoading)
 
   const {
     debouncedUsername: debouncedDraftValue,
@@ -175,6 +224,22 @@ export function StepHandle() {
             )}
           </TextField.Root>
         </View>
+
+        {loadingMessage && (
+          <Animated.View
+            entering={native(FadeIn)}
+            exiting={native(FadeOut)}
+            style={[
+              a.p_md,
+              a.rounded_md,
+              {backgroundColor: t.palette.primary_100},
+            ]}>
+            <Text style={[a.text_sm, {color: t.palette.primary_600}]}>
+              {loadingMessage}
+            </Text>
+          </Animated.View>
+        )}
+
         <LayoutAnimationConfig skipEntering skipExiting>
           <View style={[a.gap_xs]}>
             {state.error && (
