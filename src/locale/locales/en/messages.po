@@ -150,7 +150,7 @@ msgstr ""
 msgid "{0} is not a valid URL"
 msgstr ""
 
-#: src/screens/Signup/StepHandle/index.tsx:189
+#: src/screens/Signup/StepHandle/index.tsx:254
 msgid "{0} is not available"
 msgstr ""
 
@@ -613,11 +613,11 @@ msgstr ""
 msgid "Account Muted by List"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:624
+#: src/screens/Settings/Settings.tsx:626
 msgid "Account options"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:660
+#: src/screens/Settings/Settings.tsx:662
 msgid "Account removed from quick access"
 msgstr ""
 
@@ -701,8 +701,8 @@ msgstr ""
 msgid "Add alt text (optional)"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:564
-#: src/screens/Settings/Settings.tsx:567
+#: src/screens/Settings/Settings.tsx:566
+#: src/screens/Settings/Settings.tsx:569
 #: src/view/shell/desktop/LeftNav.tsx:266
 #: src/view/shell/desktop/LeftNav.tsx:270
 msgid "Add another account"
@@ -1178,8 +1178,8 @@ msgstr ""
 msgid "Apply default recommended feeds"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:498
 #: src/screens/Settings/Settings.tsx:500
+#: src/screens/Settings/Settings.tsx:502
 msgid "Apply Pull Request"
 msgstr ""
 
@@ -1854,11 +1854,11 @@ msgstr ""
 msgid "Choose your username"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:490
+#: src/screens/Settings/Settings.tsx:492
 msgid "Clear all storage data"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:492
+#: src/screens/Settings/Settings.tsx:494
 msgid "Clear all storage data (restart after this)"
 msgstr ""
 
@@ -2493,6 +2493,14 @@ msgstr ""
 msgid "Created {0}"
 msgstr ""
 
+#: src/screens/Signup/StepHandle/index.tsx:45
+msgid "Creating and posting transaction to Prism..."
+msgstr ""
+
+#: src/screens/Signup/StepHandle/index.tsx:48
+msgid "Creating DID and generating ZK proof..."
+msgstr ""
+
 #: src/screens/List/ListHiddenScreen.tsx:127
 msgid "Creator has been blocked"
 msgstr ""
@@ -2549,7 +2557,7 @@ msgstr ""
 msgid "Deactivate account"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:455
+#: src/screens/Settings/Settings.tsx:457
 msgid "Debug Moderation"
 msgstr ""
 
@@ -2598,7 +2606,7 @@ msgstr ""
 msgid "Delete chat"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:462
+#: src/screens/Settings/Settings.tsx:464
 msgid "Delete chat declaration record"
 msgstr ""
 
@@ -3684,6 +3692,10 @@ msgstr ""
 
 #: src/screens/Settings/components/OTAInfo.tsx:58
 msgid "Fetch update"
+msgstr ""
+
+#: src/screens/Signup/StepHandle/index.tsx:50
+msgid "Fetching latest epoch with proof data and DID..."
 msgstr ""
 
 #: src/screens/Settings/components/ExportCarDialog.tsx:43
@@ -5884,7 +5896,7 @@ msgstr ""
 msgid "on<0><1/><2><3/></2></0>"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:388
+#: src/screens/Settings/Settings.tsx:390
 msgid "Onboarding reset"
 msgstr ""
 
@@ -5986,7 +5998,7 @@ msgstr ""
 msgid "Open message options"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:453
+#: src/screens/Settings/Settings.tsx:455
 msgid "Open moderation debug page"
 msgstr ""
 
@@ -6015,12 +6027,12 @@ msgstr ""
 msgid "Open starter pack menu"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:446
-#: src/screens/Settings/Settings.tsx:460
+#: src/screens/Settings/Settings.tsx:448
+#: src/screens/Settings/Settings.tsx:462
 msgid "Open storybook page"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:439
+#: src/screens/Settings/Settings.tsx:441
 msgid "Open system log"
 msgstr ""
 
@@ -6896,7 +6908,7 @@ msgstr ""
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:104
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:111
 #: src/screens/Bookmarks/index.tsx:255
-#: src/screens/Settings/Settings.tsx:662
+#: src/screens/Settings/Settings.tsx:664
 #: src/view/com/modals/UserAddRemoveLists.tsx:235
 #: src/view/com/posts/PostFeedErrorMessage.tsx:217
 msgid "Remove"
@@ -6910,8 +6922,8 @@ msgstr ""
 msgid "Remove {historyItem}"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:641
-#: src/screens/Settings/Settings.tsx:644
+#: src/screens/Settings/Settings.tsx:643
+#: src/screens/Settings/Settings.tsx:646
 msgid "Remove account"
 msgstr ""
 
@@ -6950,7 +6962,7 @@ msgstr ""
 msgid "Remove from my feeds"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:654
+#: src/screens/Settings/Settings.tsx:656
 msgid "Remove from quick access?"
 msgstr ""
 
@@ -7325,8 +7337,8 @@ msgstr ""
 msgid "Resend Verification Email"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:482
 #: src/screens/Settings/Settings.tsx:484
+#: src/screens/Settings/Settings.tsx:486
 msgid "Reset activity subscription nudge"
 msgstr ""
 
@@ -7334,8 +7346,8 @@ msgstr ""
 msgid "Reset code"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:467
 #: src/screens/Settings/Settings.tsx:469
+#: src/screens/Settings/Settings.tsx:471
 msgid "Reset onboarding state"
 msgstr ""
 
@@ -8418,12 +8430,12 @@ msgstr ""
 msgid "Step {0} of {1}"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:393
+#: src/screens/Settings/Settings.tsx:395
 msgid "Storage cleared, you need to restart the app now."
 msgstr ""
 
 #: src/Navigation.tsx:306
-#: src/screens/Settings/Settings.tsx:448
+#: src/screens/Settings/Settings.tsx:450
 msgid "Storybook"
 msgstr ""
 
@@ -8520,7 +8532,7 @@ msgstr ""
 
 #: src/screens/Settings/Settings.tsx:123
 #: src/screens/Settings/Settings.tsx:137
-#: src/screens/Settings/Settings.tsx:604
+#: src/screens/Settings/Settings.tsx:606
 #: src/view/shell/desktop/LeftNav.tsx:251
 msgid "Switch account"
 msgstr ""
@@ -8548,7 +8560,7 @@ msgstr ""
 #: src/screens/Log.tsx:58
 #: src/screens/Settings/AboutSettings.tsx:107
 #: src/screens/Settings/AboutSettings.tsx:110
-#: src/screens/Settings/Settings.tsx:441
+#: src/screens/Settings/Settings.tsx:443
 msgid "System log"
 msgstr ""
 
@@ -8682,7 +8694,7 @@ msgstr ""
 msgid "That starter pack could not be found."
 msgstr ""
 
-#: src/screens/Signup/StepHandle/index.tsx:78
+#: src/screens/Signup/StepHandle/index.tsx:127
 msgid "That username is already taken"
 msgstr ""
 
@@ -9139,7 +9151,7 @@ msgstr ""
 msgid "This will delete \"{0}\" from your muted words. You can always add it back later."
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:656
+#: src/screens/Settings/Settings.tsx:658
 msgid "This will remove @{0} from the quick access list."
 msgstr ""
 
@@ -9293,11 +9305,11 @@ msgstr ""
 msgid "Unable to delete"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:507
+#: src/screens/Settings/Settings.tsx:509
 msgid "Unapply Pull Request"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:509
+#: src/screens/Settings/Settings.tsx:511
 msgid "Unapply Pull Request {currentChannel}"
 msgstr ""
 
@@ -9469,8 +9481,8 @@ msgstr ""
 msgid "Unpinned from your feeds"
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:474
 #: src/screens/Settings/Settings.tsx:476
+#: src/screens/Settings/Settings.tsx:478
 msgid "Unsnooze email reminder"
 msgstr ""
 
@@ -9668,15 +9680,15 @@ msgctxt "toast"
 msgid "User list updated"
 msgstr ""
 
-#: src/screens/Signup/StepHandle/index.tsx:234
+#: src/screens/Signup/StepHandle/index.tsx:299
 msgid "Username cannot be longer than {MAX_SERVICE_HANDLE_LENGTH, plural, other {# characters}}"
 msgstr ""
 
-#: src/screens/Signup/StepHandle/index.tsx:218
+#: src/screens/Signup/StepHandle/index.tsx:283
 msgid "Username cannot begin or end with a hyphen"
 msgstr ""
 
-#: src/screens/Signup/StepHandle/index.tsx:222
+#: src/screens/Signup/StepHandle/index.tsx:287
 msgid "Username must only contain letters (a-z), numbers, and hyphens"
 msgstr ""
 
@@ -9925,8 +9937,8 @@ msgstr ""
 #: src/components/ProfileHoverCard/index.web.tsx:486
 #: src/components/ProfileHoverCard/index.web.tsx:513
 #: src/view/com/posts/PostFeedErrorMessage.tsx:179
-#: src/view/com/util/PostMeta.tsx:91
-#: src/view/com/util/PostMeta.tsx:128
+#: src/view/com/util/PostMeta.tsx:93
+#: src/view/com/util/PostMeta.tsx:130
 msgid "View profile"
 msgstr ""
 
@@ -10620,7 +10632,7 @@ msgstr ""
 msgid "You previously deactivated @{0}."
 msgstr ""
 
-#: src/screens/Settings/Settings.tsx:404
+#: src/screens/Settings/Settings.tsx:406
 msgid "You probably want to restart the app now."
 msgstr ""
 
